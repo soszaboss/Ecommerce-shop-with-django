@@ -15,6 +15,9 @@
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/.venv" />
+      <excludeFolder url="file://$MODULE_DIR$/assets/styles" />
+      <excludeFolder url="file://$MODULE_DIR$/static/js/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/staticfiles/js/dist" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

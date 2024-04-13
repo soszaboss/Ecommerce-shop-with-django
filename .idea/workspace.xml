@@ -5,28 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5527b1e8-6710-4570-8b6f-8005f0ad5deb" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/carts/migrations/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/carts/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/store/cart.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/EcommerceProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/EcommerceProject.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/36ebebd2-e6c7-4581-850c-fddac2205e9b.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/36ebebd2-e6c7-4581-850c-fddac2205e9b.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/36ebebd2-e6c7-4581-850c-fddac2205e9b/storage_v2/_src_/database/ecommerce.QLYXWw/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/36ebebd2-e6c7-4581-850c-fddac2205e9b/storage_v2/_src_/database/ecommerce.QLYXWw/schema/public.abK9xQ.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EcommerceProject/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/EcommerceProject/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EcommerceProject/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/EcommerceProject/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EcommerceProject/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/EcommerceProject/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/scripts/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/scripts/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/dist/bundle.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/dist/data_image_svg_xml_3csvg_xmlns_27http_www_w3_org_2000_svg_27_viewBox_27-4_-4_8_8_27_3e_3ccirc-5ec11d.bundle.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/dist/vendors-node_modules_bootstrap_dist_css_bootstrap_min_css.bundle.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/dist/vendors-node_modules_bootstrap_dist_js_bootstrap_bundle_js.bundle.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/dist/vendors-node_modules_bootstrap_dist_js_bootstrap_bundle_min_js.bundle.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/dist/vendors-node_modules_bootstrap_dist_js_bootstrap_min_js.bundle.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/dist/vendors-node_modules_bootstrap_dist_js_bootstrap_min_js_map.bundle.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/dist/vendors-node_modules_jquery_dist_jquery_min_js.bundle.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/style/css/ui.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/style/css/ui.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/store/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/category/context_processors.py" beforeDir="false" afterPath="$PROJECT_DIR$/category/context_processors.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/store/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/store/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/store/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/includes/footer.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/includes/footer.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/includes/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/includes/navbar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/store/product_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/store/product_detail.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/store/store.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/store/store.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,15 +37,27 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="JavaScript File" />
         <option value="Python Script" />
         <option value="HTML File" />
-        <option value="JavaScript File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;soszaboss&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/soszaboss/Ecommerce-store.git&quot;,
+    &quot;accountId&quot;: &quot;c804f1e9-dcfa-41a9-a07a-48b783bdbb78&quot;
+  }
+}</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -68,13 +78,17 @@
     "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.pycharm.django.structure.promotion.once.per.project": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "/home/soszaboss/Documents/projet/python/flask/EcommerceProject/templates",
+    "javascript.nodejs.core.library.configured.version": "20.12.0",
+    "javascript.nodejs.core.library.typings.version": "20.12.7",
+    "last_opened_file_path": "/home/soszaboss/Documents/projet/python/flask/EcommerceProject/templates/search",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -85,6 +99,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/templates/search" />
       <recent name="$PROJECT_DIR$/templates" />
       <recent name="$PROJECT_DIR$/EcommerceProject" />
     </key>
@@ -125,7 +140,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-09665e90c3a7-b11f5e8da5ad-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-233.15026.15" />
+        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-PY-241.14494.241" />
+        <option value="bundled-python-sdk-0509580d9d50-28c9f5db9ffe-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-241.14494.241" />
       </set>
     </attachedChunks>
   </component>
@@ -141,6 +157,10 @@
       <workItem from="1710717718111" duration="8839000" />
       <workItem from="1711067411120" duration="6667000" />
       <workItem from="1711194664583" duration="10021000" />
+      <workItem from="1712047336876" duration="26210000" />
+      <workItem from="1712911106965" duration="6506000" />
+      <workItem from="1712925994890" duration="4654000" />
+      <workItem from="1712995461845" duration="12470000" />
     </task>
     <servers />
   </component>

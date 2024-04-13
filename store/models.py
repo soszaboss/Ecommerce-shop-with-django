@@ -10,9 +10,9 @@ class Product(models.Model):
     product_name = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
     description = models.TextField(blank=True, null=True)
-    price = models.IntegerField()
+    price = models.FloatField()
     image = models.ImageField(upload_to='photos/products')
-    stock = models.IntegerField(default=0)
+    stock = models.PositiveIntegerField(default=0)
     is_available = models.BooleanField(default=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -23,6 +23,9 @@ class Product(models.Model):
         if not self.slug:
             self.slug = slugify(f'{self.product_name}-{self.id}')
             super().save(*args, **kwargs)  # Save again to store the generated slug
+        if self.stock == 0:
+            self.is_available = False
+            super().save(*args, **kwargs)
 
     def get_url(self):
         return reverse('product_detail', args=[self.category.slug, self.slug])
