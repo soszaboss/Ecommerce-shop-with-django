@@ -14,5 +14,4 @@ def cart_counter(request):
                 count += item.quantity
         except Cart.DoesNotExist:
             count = 0
-    print(count)
     return dict(count_item=count)
