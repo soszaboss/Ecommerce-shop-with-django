@@ -85,6 +85,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'EcommerceProject.wsgi.application'
 AUTH_USER_MODEL = "accounts.Account"
 LOGIN_URL = reverse_lazy('login')
+LOGOUT_REDIRECT_URL = 'login'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 

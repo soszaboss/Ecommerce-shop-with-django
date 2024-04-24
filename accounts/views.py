@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth.views import LoginView, LogoutView
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect
 from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView
 from .forms import LoginForm, RegistrationForm
@@ -20,10 +20,7 @@ class Login(LoginView):
     template_name = 'authentification/signin.html'
     # success_url = reverse_lazy('home')
     next_page = reverse_lazy('home')
-
-
-class Logout(LogoutView):
-    next_page = reverse_lazy('login')
+    redirect_authenticated_user = reverse_lazy('home')
 
 
 class RegisterView(CreateView):
@@ -45,3 +42,7 @@ class RegisterView(CreateView):
             messages.success(request, 'Account was successfully registered.')
             return redirect(self.success_url)
         return super().post(request, *args, **kwargs)
+
+
+class Logout(LogoutView):
+    next_page = reverse_lazy('login')

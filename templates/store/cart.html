@@ -34,10 +34,10 @@
                                 </figcaption>
                             </figure>
                         </td>
-                        <td>
+                        <td class="w-25">
                             <!-- col.// -->
                             <div class="col">
-                                <div class="input-group input-spinner">
+                                <div class="input-group input-spinner d-flex gap-1">
                                     <div class="input-group-prepend">
                                         {% if not cart_item.product.allow_variants %}
                                             <a href="{% url 'cart:diminue_item' cart_item.product.id  %}" class="btn btn-light" type="button" id="button-plus"> <i class="fa fa-minus"></i> </a>
@@ -45,7 +45,7 @@
                                             <a href="{% url 'cart:diminue_variant_item' cart_item.product.id cart_item.variant_key %}" class="btn btn-light" type="button" id="button-plus"> <i class="fa fa-minus"></i> </a>
                                         {% endif %}
                                     </div>
-                                    <input type="text" class="form-control"  value="{{ cart_item.quantity }}">
+                                    <input type="text" class="form-control"  value="{{ cart_item.quantity }}" disabled>
                                     <div class="input-group-append">
                                         {% if not cart_item.product.allow_variants %}
                                             <a href="{% url 'cart:add_cart' cart_item.product.id  %}" class="btn btn-light" type="button" id="button-plus"> <i class="fa fa-plus"></i> </a>
