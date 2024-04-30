@@ -1,4 +1,4 @@
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, PasswordResetForm, SetPasswordForm
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 
@@ -46,3 +46,20 @@ class RegistrationForm(UserCreationForm):
         # self.fields["email"].label = "Phone Number"
         # self.fields["password1"].label = "Password"
         # self.fields["password2"].label = "Confirm Password"
+
+class PasswordReset(PasswordResetForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["email"].widget.attrs.update(
+            {"class": "form-control form-control-lg", "placeholder": "Example@email.com"}
+        )
+
+class PasswordResetConfirm(SetPasswordForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["new_password1"].widget.attrs.update(
+            {"class": "form-control form-control-lg", "placeholder": "New Password"}
+        )
+        self.fields["new_password2"].widget.attrs.update(
+            {"class": "form-control form-control-lg", "placeholder": "Confirm Your New Password"}
+        )

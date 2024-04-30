@@ -1,11 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
-
-
+from django.utils import timezone
+from datetime import timedelta
 # Create your models here.
 
 class UserManager(BaseUserManager):
-    def create_user(self, email, first_name, last_name,username, password=None):
+    def create_user(self, email, first_name, last_name,username, phone_number, password=None):
         """
         Creates and saves a User with the given email, date of
         birth and password.
@@ -18,6 +18,7 @@ class UserManager(BaseUserManager):
             first_name=first_name,
             last_name=last_name,
             username=username,
+            phone_number=phone_number,
             password=password,
             #date_of_birth=date_of_birth,
         )
@@ -26,7 +27,7 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, first_name, last_name,username, password=None):#date_of_birth):
+    def create_superuser(self, email, first_name, last_name,username, phone_number, password=None):#date_of_birth):
         """
         Creates and saves a superuser with the given email, date of
         birth and password.
@@ -36,6 +37,7 @@ class UserManager(BaseUserManager):
             first_name=first_name,
             last_name=last_name,
             username=username,
+            phone_number=phone_number,
             password=password,
             #date_of_birth=date_of_birth,
         )
@@ -53,7 +55,7 @@ class Account(AbstractBaseUser, PermissionsMixin):
     phone_number = models.CharField(max_length=50)
 
     #required
-    is_active = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
     date_joined = models.DateTimeField(auto_now_add=True)
     is_admin = models.BooleanField(default=False)
@@ -74,3 +76,12 @@ class Account(AbstractBaseUser, PermissionsMixin):
     #Returns True if the user has any permissions in the given app label.
     def has_module_perms(self, app_label):
         return True
+
+
+# class Acoounts_Activation(models.Model):
+#     user = models.OneToOneField(Account, on_delete=models.CASCADE)
+#     date = models.DateTimeField(auto_now_add=True)
+#
+#     def time_expired(self):
+#         setted_expired_time = self.date + timedelta(hours=24)
+#         return timezone.now() > setted_expired_time

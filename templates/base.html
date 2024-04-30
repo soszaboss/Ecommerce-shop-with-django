@@ -15,16 +15,16 @@
     <link href="{% static 'style/css/responsive.css' %}" rel="stylesheet" media="only screen and (max-width: 1200px)" />
     <title>{% block title %}{% endblock title %}</title>
 </head>
-<body class="vh-100">
+<body class="vh-100 grid-3-rows d-grid">
             <!-- ========================= NAVBAR SECTION ========================= -->
                                     {% include 'includes/navbar.html' %}
             <!-- ========================= NAVBAR SECTION ========================= -->
-        {% block content %}
+                            {% block content %}
 
-        {% endblock %}
+                            {% endblock %}
 
             <!-- ========================= FOOTER =============================== -->
-            {% include 'includes/footer.html' %}
+                                    {% include 'includes/footer.html' %}
             <!-- ========================= FOOTER END // ========================= -->
 
 </body>

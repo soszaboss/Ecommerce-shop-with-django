@@ -1414,4 +1414,8 @@ a[class*=card]:hover .title {
   margin-right: 5px;
   display: block;
 }
+
+.grid-3-rows{
+  grid-template-rows: 15% auto 10%;
+}
 /*# sourceMappingURL=ui.css.map */

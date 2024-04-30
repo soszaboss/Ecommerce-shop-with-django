@@ -6,45 +6,44 @@ GreatKart | One of the Biggest Online Shopping Platform
 {% endblock %}
 
 {% block content %}
+    <main>
+        <!-- ========================= SECTION MAIN ========================= -->
+        <section class="section-intro padding-y-sm">
+            <div class="container">
 
-<!-- ========================= SECTION MAIN ========================= -->
-<section class="section-intro padding-y-sm">
-<div class="container">
+                <div class="intro-banner-wrap mx-auto w-75 h-50">
+                    <img src="{% static 'images/banners/1.jpg' %}" class="img-fluid rounded" alt="" style="background-size: cover;background-repeat: no-repeat;">
+                </div>
 
-<div class="intro-banner-wrap mx-auto w-75">
-	<img src="{% static 'images/banners/1.jpg' %}" class="img-fluid rounded" alt="" style="background-size: cover;background-repeat: no-repeat;">
-</div>
+            </div> <!-- container //  -->
+        </section>
+        <!-- ========================= SECTION MAIN END// ========================= -->
 
-</div> <!-- container //  -->
-</section>
-<!-- ========================= SECTION MAIN END// ========================= -->
+        <!-- ========================= SECTION  ========================= -->
+        <section class="section-name padding-y-sm">
+            <div class="container">
+                {##}
+                {#<header class="section-heading">#}
+                {#	<a href="{% url 'store' %}" class="btn btn-outline-primary float-right">See all</a>#}
+                {#	<h3 class="section-title">Popular products</h3>#}
+                {#</header><!-- sect-heading -->#}
 
-<!-- ========================= SECTION  ========================= -->
-<section class="section-name padding-y-sm">
-<div class="container">
-{##}
-{#<header class="section-heading">#}
-{#	<a href="{% url 'store' %}" class="btn btn-outline-primary float-right">See all</a>#}
-{#	<h3 class="section-title">Popular products</h3>#}
-{#</header><!-- sect-heading -->#}
-
-<div class="row">
-    {% for product in products %}
-        <div class="col-md-3">
-		<div class="card card-product-grid">
-			<a href="{{ product.get_url }}" class="img-wrap"> <img src="{{ product.image.url }}" alt=""> </a>
-			<figcaption class="info-wrap">
-				<a href="{{ product.get_url }}" class="title link-underline-opacity-0">{{ product.product_name }}</a>
-				<div class="price mt-1">${{ product.price }}</div> <!-- price-wrap.// -->
-			</figcaption>
-		</div>
-    </div>
-    {% endfor %}
-</div> <!-- row.// -->
-</div><!-- container // -->
-</section>
-<!-- ========================= SECTION  END// ========================= -->
-
-
+                <div class="row">
+                    {% for product in products %}
+                        <div class="col-md-3">
+                            <div class="card card-product-grid">
+                                <a href="{{ product.get_url }}" class="img-wrap"> <img src="{{ product.image.url }}" alt=""> </a>
+                                <figcaption class="info-wrap">
+                                    <a href="{{ product.get_url }}" class="title link-underline-opacity-0">{{ product.product_name }}</a>
+                                    <div class="price mt-1">${{ product.price }}</div> <!-- price-wrap.// -->
+                                </figcaption>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div> <!-- row.// -->
+            </div><!-- container // -->
+        </section>
+        <!-- ========================= SECTION  END// ========================= -->
+    </main>
 {% endblock %}
 

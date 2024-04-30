@@ -1,9 +1,16 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <section class="section-conten padding-y" style="min-height:84vh">
-
-    <!-- ============================ COMPONENT LOGIN   ================================= -->
+    <section class="section-content padding-y">
+    {% if request.GET.command == 'verification' %}
+        <div class="d-flex h-50">
+            <div class="alert alert-info alert-dismissible fade show w-50 mx-auto text-center align-self-center" role="alert">
+                    You’re Almost Done… A verification email was sent to: {{request.GET.email}}. Open this email and click the link to activate your account.”
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+    {% else %}
+        <!-- ============================ COMPONENT LOGIN   ================================= -->
         <div class="card mx-auto" style="max-width: 380px; margin-top:100px;">
           <div class="card-body">
           <h4 class="card-title mb-4">Sign in</h4>
@@ -19,6 +26,16 @@
                           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                     {% endif %}
+                    {% if form.non_field_errors %}
+    <div class="alert alert-warning alert-dismissible fade show w-75 mx-auto" role="alert">
+        <ul>
+            {% for error in form.non_field_errors %}
+                <li><strong>Erreur:</strong> {{ error }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
+
               <div class="form-group">
                  {{ form.username }}
               </div> <!-- form-group// -->
@@ -40,7 +57,7 @@
          <p class="text-center mt-4">Don't have account? <a href="{% url 'register' %}">Sign up</a></p>
          <br><br>
     <!-- ============================ COMPONENT LOGIN  END.// ================================= -->
-
+    {% endif %}
 
     </section>
 {% endblock %}

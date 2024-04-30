@@ -4,21 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5527b1e8-6710-4570-8b6f-8005f0ad5deb" name="Changes" comment="&quot;search bar fixed&quot;">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/36ebebd2-e6c7-4581-850c-fddac2205e9b.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/36ebebd2-e6c7-4581-850c-fddac2205e9b.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/36ebebd2-e6c7-4581-850c-fddac2205e9b/storage_v2/_src_/database/ecommerce.QLYXWw/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/36ebebd2-e6c7-4581-850c-fddac2205e9b/storage_v2/_src_/database/ecommerce.QLYXWw/schema/public.abK9xQ.meta" afterDir="false" />
+    <list default="true" id="5527b1e8-6710-4570-8b6f-8005f0ad5deb" name="Changes" comment="&quot;logout fixed fixed&quot;">
+      <change afterPath="$PROJECT_DIR$/templates/authentification/account_verification_email.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/carts/context_processors.py" beforeDir="false" afterPath="$PROJECT_DIR$/carts/context_processors.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/carts/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/carts/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/carts/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/carts/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/carts/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/carts/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/store/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/store/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/store/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/store/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/includes/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/includes/navbar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/store/cart.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/store/cart.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/store/product_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/store/product_detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EcommerceProject/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/EcommerceProject/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/style/css/ui.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/style/css/ui.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/authentification/signin.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/authentification/signin.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,8 +27,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaScript File" />
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -69,6 +64,8 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;Django Server.EcommerceProject.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenDjangoStructureViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
@@ -82,7 +79,7 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
   &quot;keyToStringList&quot;: {
@@ -113,6 +110,7 @@
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="DJANGO_SETTINGS_MODULE" value="EcommerceProject.settings" />
       </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="" />
@@ -158,6 +156,12 @@
       <workItem from="1713190032420" duration="35093000" />
       <workItem from="1713431408655" duration="20930000" />
       <workItem from="1713517804923" duration="14719000" />
+      <workItem from="1713958666013" duration="4990000" />
+      <workItem from="1714059150697" duration="4724000" />
+      <workItem from="1714132164963" duration="675000" />
+      <workItem from="1714133555700" duration="9000" />
+      <workItem from="1714379473179" duration="14809000" />
+      <workItem from="1714400133889" duration="11000" />
     </task>
     <task id="LOCAL-00001" summary="&quot;search bar fixed&quot;">
       <option name="closed" value="true" />
@@ -167,7 +171,15 @@
       <option name="project" value="LOCAL" />
       <updated>1713012252907</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="&quot;logout fixed fixed&quot;">
+      <option name="closed" value="true" />
+      <created>1713963616734</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1713963616734</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -175,6 +187,10 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="&quot;search bar fixed&quot;" />
-    <option name="LAST_COMMIT_MESSAGE" value="&quot;search bar fixed&quot;" />
+    <MESSAGE value="&quot;logout fixed fixed&quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="&quot;logout fixed fixed&quot;" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/EcommerceProject$test.coverage" NAME="test Coverage Results" MODIFIED="1714389316337" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/accounts" />
   </component>
 </project>
