@@ -9,6 +9,9 @@ from django.urls import reverse_lazy
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.views.generic import CreateView
+
+from carts.models import Cart, CartItem
+from carts.views import _card_id
 from .forms import LoginForm, RegistrationForm
 from .models import Account
 from faker import Faker
@@ -27,6 +30,38 @@ class Login(LoginView):
     # success_url = reverse_lazy('home')
     next_page = reverse_lazy('home')
     redirect_authenticated_user = reverse_lazy('home')
+
+    def post(self, request, *args, **kwargs):
+        try:
+            cart = Cart.objects.get(cart_id=_card_id(request))
+            if cart:
+                cart_item_exists = CartItem.objects.filter(cart=cart).exists()
+                if cart_item_exists:
+                    for item in CartItem.objects.filter(cart=cart):
+                        email = request.POST.get('username')
+                        user = Account.objects.get(email=email)
+                        if item.user is None:
+                            if item.product.allow_variants:
+                                try:
+                                    variant = CartItem.objects.get(variant_key=item.variant_key, user=user)
+                                    variant.quantity += item.quantity
+                                    variant.save()
+                                except CartItem.DoesNotExist:
+                                    pass
+                            else:
+                                try:
+                                    product = item.product
+                                    new_item = CartItem.objects.get(user=user, product=product)
+                                    if  new_item:
+                                        new_item.quantity += item.quantity
+                                        new_item.save()
+                                except CartItem.DoesNotExist:
+                                    item.user = user
+                                    item.save()
+        except Cart.DoesNotExist:
+            pass
+        return super().post(request, *args, **kwargs)
+
 
 
 class RegisterView(CreateView):

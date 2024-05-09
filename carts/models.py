@@ -1,5 +1,5 @@
 from django.db import models
-
+from accounts.models import Account
 from store.models import Product, AttributeVariant
 
 
@@ -13,10 +13,11 @@ class Cart(models.Model):
 
 
 class CartItem(models.Model):
-    cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
+    user = models.ForeignKey(Account, on_delete=models.CASCADE, null=True)
+    cart = models.ForeignKey(Cart, on_delete=models.CASCADE, null=True)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=0)
-    variant_key = models.CharField(max_length=10, blank=True, unique=True, default=None)
+    variant_key = models.CharField(max_length=10, blank=True, unique=False, default=None, null=True)
     variants_attribut = models.ManyToManyField(AttributeVariant)
     is_active = models.BooleanField(default=True)
 
