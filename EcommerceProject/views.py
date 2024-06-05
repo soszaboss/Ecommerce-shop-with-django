@@ -24,3 +24,4 @@ def search(request):
         else:
             context = {'products': {}, 'count': 0}
         return render(request, 'store/store.html', context)
+

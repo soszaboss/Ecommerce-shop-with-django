@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 
+from order.forms import OrderForm
 from store.models import Product
 from .models import CartItem, Cart
 
@@ -32,7 +33,7 @@ def add_card(request, product_id):
         print(attribut_variation)
         try:
             if request.user.is_authenticated:
-                cart_items = CartItem.objects.get(user=request.user, product=product, variant_key=variant_key)
+                cart_item = CartItem.objects.get(user=request.user, product=product, variant_key=variant_key)
             else:
                 cart_item = CartItem.objects.get(cart=cart, product=product, variant_key=variant_key, user=None)
             cart_item.quantity += 1
@@ -40,7 +41,7 @@ def add_card(request, product_id):
             cart_item.variants_attribut.add(*attribut_variation)
         except CartItem.DoesNotExist:
             if request.user.is_authenticated:
-                cart_items = CartItem.objects.create(user=request.user, product=product, variant_key=variant_key,quantity=1)
+                cart_item = CartItem.objects.create(user=request.user, product=product, variant_key=variant_key,quantity=1)
             else:
                 cart_item = CartItem.objects.create(cart=cart, product=product, variant_key=variant_key, quantity=1)
             cart_item.save()
@@ -92,10 +93,11 @@ def delete_card(request, product_id):
     except CartItem.DoesNotExist:
         return redirect('cart:carts')
     else:
-        cart_item.delete()
         if count == 0:
-            cart.delete()
-        return redirect('cart:carts')
+            return redirect('cart:carts')
+        else:
+            cart_item.delete()
+            return redirect('cart:carts')
 
 
 def delete_variant_card(request, product_id, key):
@@ -103,17 +105,17 @@ def delete_variant_card(request, product_id, key):
     try:
         if request.user.is_authenticated:
             cart_item = CartItem.objects.get(user=request.user, product=product, variant_key=key)
-            count = CartItem.objects.all().filter(user=request.user).count()
+            # count = CartItem.objects.all().filter(user=request.user).count()
         else:
             cart = Cart.objects.get(cart_id=_card_id(request))
             cart_item = CartItem.objects.get(cart=cart, product=product, variant_key=key)
             count = CartItem.objects.all().filter(cart=cart).count()
+            if count == 0:
+                cart.delete()
     except CartItem.DoesNotExist:
         return redirect('cart:carts')
     else:
         cart_item.delete()
-        if count == 0:
-            cart.delete()
         return redirect('cart:carts')
 
 
@@ -122,7 +124,7 @@ def index(request, total=0, cart_id=None, quantity=0):
     try:
         if request.user.is_authenticated:
             cart_items = CartItem.objects.filter(user=request.user, is_active=True).order_by('-id')
-            print(cart_item)
+            print(cart_items)
         else:
             cart = Cart.objects.get(cart_id=_card_id(request))
             cart_items = CartItem.objects.filter(cart=cart, is_active=True).order_by('-id')
@@ -137,7 +139,7 @@ def index(request, total=0, cart_id=None, quantity=0):
         'quantity': quantity,
         'cart_items': cart_items
     }
-    return render(request, template_name="store/cart.html", context=context)
+    return render(request, template_name="cart/cart.html", context=context)
 
 
 def add_variant_card(request, product_id, key):
@@ -177,21 +179,20 @@ def diminue_variant_item(request, product_id, key):
 @login_required
 def checkout(request, total=0, cart_id=None, quantity=0):
     cart_items = []
-    try:
-        if request.user.is_authenticated:
-            cart_item = CartItem.objects.filter(user=request.user, is_active=True).order_by('-id')
-        else:
-            cart = Cart.objects.get(cart_id=_card_id(request))
-            cart_items = CartItem.objects.filter(cart=cart, is_active=True).order_by('-id')
-        for cart_item in cart_items:
-            total += (cart_item.product.price * cart_item.quantity)
-            quantity += cart_item.quantity
-    except Exception as e:
-        pass
+    form = OrderForm()
+    if request.user.is_authenticated:
+        cart_items = CartItem.objects.filter(user=request.user, is_active=True).order_by('-id')
+    else:
+        cart = Cart.objects.get(cart_id=_card_id(request))
+        cart_items = CartItem.objects.filter(cart=cart, is_active=True).order_by('-id')
+    for cart_item in cart_items:
+        total += (cart_item.product.price * cart_item.quantity)
+        quantity += cart_item.quantity
 
     context = {
         'total': total,
         'quantity': quantity,
-        'cart_items': cart_items
+        'cart_items': cart_items,
+        'form': form
     }
-    return render(request, 'store/checkout.html', context)
+    return render(request, 'cart/checkout.html', context)

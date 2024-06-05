@@ -1,0 +1,254 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <section class="section-content padding-y container bg-white">
+        <div class="row mt-3">
+        <div class="accordion col-8" id="accordionPanelsStayOpenExample">
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                <span class="fs-4">Your addresses</span>
+              </button>
+            </h2>
+            <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
+              <div class="accordion-body">
+                  <p class="fs-5 m-0">{{ first_name }}&ensp;{{ last_name  }}</p>
+                <p class="text-secondary">{{ address_line_1  }} | {{ city }}-{{ state }} | +221&nbsp;{{ phone }}</p>
+              </div>
+            </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+            <span class="fs-4">Items</span>
+          </button>
+        </h2>
+        <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
+          <div class="accordion-body">
+              <section class="">
+                            <div class="card">
+
+                                <div class="card-body">
+                                    <table class="table table-borderless opacity-50">
+                                     <thead>
+                                        <tr>
+                                          <th scope="col">Produit</th>
+                                          <td>Quantity</td>
+                                          <td>Price</td>
+                                        </tr>
+                                      </thead>
+                                        <tbody>
+                                            {% for cart_item in cart_items %}
+                                                    <tr>
+                                                        <th scope="row" colspan="2" class="row">
+                                                            <div class="">
+                                                                <figure class="itemside mb-4">
+                                                                    <div class="aside"><img src="{{ cart_item.product.image.url }}" class="img-sm"></div>
+                                                                    <figcaption class="info">
+                                                                        <a href="{{ cart_item.product.get_url }}" class="title text-dark">{{ cart_item.product.product_name }}</a>
+                                                                        {% if cart_item.product.allow_variants %}
+                                                                            {% for attribut in cart_item.variants_attribut.all %}
+                                                                                <p class="text-muted small">{{ attribut.variant.name }}: {{ attribut.attribut_variant_name }}</p>
+                                                                            {% endfor %}
+                                                                        {% endif %}
+                                                                    </figcaption>
+                                                                </figure>
+                                                            </div>
+                                                      </th>
+                                                        <td>{{ cart_item.quantity }}</td>
+                                                        <td>{{ cart_item.total }}</td>
+                                                    </tr>
+                                            {% endfor %}
+                                          </tbody>
+                                            <tfoot class="border-top border-bottom">
+                                                <tr>
+                                                    <th colspan="2">
+                                                        Total
+                                                    </th>
+                                                    <td class="border-start">
+                                                            {{ total }}
+                                                    </td>
+                                                </tr>
+                                            </tfoot>
+                                    </table>
+                            </div> <!-- card-body.// -->
+                        </div> <!-- card.// -->
+                    </section> <!-- col.// -->
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+             <span class="fs-4">Choose a Payment Method </span>
+          </button>
+        </h2>
+        <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">
+          <div class="accordion-body">
+              <div class="card">
+                        <header class="card-header">
+                            <img src="{% static 'images/misc/payment-card.png' %}" class="float-right" height="24">
+                            <label class="form-check" data-toggle="collapse" data-target="#pay_payme">
+                                <input class="form-check-input" name="payment-option" type="radio" value="option2">
+                                <h6 class="form-check-label"> Credit Card  </h6>
+                            </label>
+                        </header>
+                        <div id="pay_payme" class="collapse" data-parent="#accordion_pay">
+                            <div class="card-body">
+                                <p class="alert alert-success">Some information or instruction</p>
+                                <form class="form-inline">
+                                    <input type="text" class="form-control mr-2" placeholder="xxxx-xxxx-xxxx-xxxx" name="">
+                                    <input type="text" class="form-control mr-2" style="width: 100px" placeholder="dd/yy" name="">
+                                    <input type="number" maxlength="3" class="form-control mr-2" style="width: 100px" placeholder="cvc" name="">
+                                    <button class="btn btn btn-success">Button</button>
+                                </form>
+                            </div> <!-- card body .// -->
+                        </div> <!-- collapse .// -->
+                    </div> <!-- card.// -->
+              </div>
+            </div>
+          </div>
+        </div>
+            <div class="col-4">
+                <div class="card">
+                <div class="card-body">
+                    <div id="paypal-button-container"></div>
+                    <p id="result-message"></p>
+                </div> <!-- card-body.// -->
+                </div> <!-- card.// -->
+            </div> <!-- col.// -->
+        </div>
+    </section>
+{% endblock %}
+
+{% block script %}
+    const getCookie = (name) => {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+// Retrieving the CSRF token
+
+const csrftoken = getCookie('csrftoken');
+
+window.paypal
+  .Buttons({
+    style: {
+      shape: "rect",
+      layout: "vertical",
+      color: "gold",
+      label: "paypal",
+    } ,
+    async createOrder() {
+      try {
+        const response = await fetch("/order/api/orders/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            'X-CSRFToken': csrftoken,
+          },
+          // use the "body" param to optionally pass additional order information
+          // like product ids and quantities
+          body: JSON.stringify({
+            cart: [
+              {
+                id: 1,
+                quantity: 5,
+              },
+                    ],
+            payload: {"intent": "CAPTURE", "purchase_units": [{"reference_id":"{{ order_number }}", "amount": {"currency_code": "USD", "value": "{{ total }}", }, }, ], }
+          }),
+        });
+        const orderData = await response.json();
+
+        if (orderData.id) {
+          console.log(orderData.id);
+          return orderData.id;
+        }
+        const errorDetail = orderData?.details?.[0];
+        const errorMessage = errorDetail
+          ? `${errorDetail.issue} ${errorDetail.description} (${orderData.debug_id})`
+          : JSON.stringify(orderData);
+
+        throw new Error(errorMessage);
+      } catch (error) {
+        console.error(error);
+        // resultMessage(`Could not initiate PayPal Checkout...<br><br>${error}`);
+      }
+    } ,
+    async onApprove(data, actions) {
+      try {
+        // location = window.location
+        const response = await fetch(`/order/api/orders/${data.orderID}/capture/`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            'X-CSRFToken': csrftoken,
+          },
+        });
+
+        const orderData = await response.json();
+        console.log(orderData)
+        // Three cases to handle:
+        //   (1) Recoverable INSTRUMENT_DECLINED -> call actions.restart()
+        //   (2) Other non-recoverable errors -> Show a failure message
+        //   (3) Successful transaction -> Show confirmation or thank you message
+
+        const errorDetail = orderData?.details?.[0];
+
+        if (errorDetail?.issue === "INSTRUMENT_DECLINED") {
+          // (1) Recoverable INSTRUMENT_DECLINED -> call actions.restart()
+          // recoverable state, per
+          // https://developer.paypal.com/docs/checkout/standard/customize/handle-funding-failures/
+          return actions.restart();
+        } else if (errorDetail) {
+          // (2) Other non-recoverable errors -> Show a failure message
+          throw new Error(`${errorDetail.description} (${orderData.debug_id})`);
+        } else if (!orderData.purchase_units) {
+          throw new Error(JSON.stringify(orderData));
+        } else {
+          // (3) Successful transaction -> Show confirmation or thank you message
+          // Or go to another URL:  actions.redirect('thank_you.html');
+          const transaction =
+            orderData?.purchase_units?.[0]?.payments?.captures?.[0] ||
+            orderData?.purchase_units?.[0]?.payments?.authorizations?.[0];
+          resultMessage(
+            `Transaction ${transaction.status}: ${transaction.id}<br>
+          <br>See console for all available details`
+          );
+          console.log(
+            "Capture result",
+            orderData,
+            JSON.stringify(orderData, null, 2)
+          );
+        }
+      } catch (error) {
+        console.error(error);
+        // resultMessage(
+        //   `Sorry, your transaction could not be processed...<br><br>${error}`
+        // );
+      }
+    } ,
+  })
+  .render("#paypal-button-container");
+
+{% endblock %}
+
+cart: [
+               {
+                 id: {{ cart_items.id }},
+                 quantity: {{ cart_item.quantity }},
+                order_number: {{ order_number }}
+               },
+                },
+            ],

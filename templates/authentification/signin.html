@@ -27,15 +27,14 @@
                         </div>
                     {% endif %}
                     {% if form.non_field_errors %}
-    <div class="alert alert-warning alert-dismissible fade show w-75 mx-auto" role="alert">
-        <ul>
-            {% for error in form.non_field_errors %}
-                <li><strong>Erreur:</strong> {{ error }}</li>
-            {% endfor %}
-        </ul>
-    </div>
-{% endif %}
-
+                        <div class="alert alert-warning alert-dismissible fade show w-75 mx-auto" role="alert">
+                            <ul>
+                                {% for error in form.non_field_errors %}
+                                    <li><strong>Erreur:</strong> {{ error }}</li>
+                                    {% endfor %}
+                                </ul>
+                        </div>
+                    {% endif %}
               <div class="form-group">
                  {{ form.username }}
               </div> <!-- form-group// -->

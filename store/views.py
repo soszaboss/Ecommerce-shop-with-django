@@ -42,7 +42,7 @@ def product_detail(request, category_slug, product_slug):
                 data[_] = var_data
 
     except Product.DoesNotExist:
-        raise Http404("Product does not exist")
+        raise Http404()
     else:
         try:
             cart = CartItem.objects.get(product=single_product, cart__cart_id=_card_id(request), variant_key=None)
@@ -92,3 +92,6 @@ def diminue_item(request, product_id):
             return redirect(product.get_url())
     except:
         return redirect(product.get_url())
+
+# def custom_404(request, exception):
+#     return render(request, 'error/404.html', status=404)
