@@ -28,70 +28,80 @@ def index(request, category_slug=None):
 
 
 def product_detail(request, category_slug, product_slug):
-    try:
-        single_product = Product.objects.get(slug=product_slug, category__slug=category_slug)
-        data = {}
-        if single_product.allow_variants:
-            variants = single_product.variant_products.all()
-            differents_variants = set(var.variant.name for var in variants)
-            for _ in differents_variants:
-                var_data = []
-                for variant in variants:
-                    if variant.variant.name == _:
-                        var_data.append(variant)
-                data[_] = var_data
+    single_product = get_object_or_404(Product, slug=product_slug, category__slug=category_slug)
+    data = {}
+    if single_product.allow_variants:
+        variants = single_product.variant_products.all()
+        differents_variants = set(var.variant.name for var in variants)
+        for _ in differents_variants:
+            var_data = []
+            for variant in variants:
+                if variant.variant.name == _:
+                    var_data.append(variant)
+            data[_] = var_data
 
-    except Product.DoesNotExist:
-        raise Http404()
-    else:
-        try:
-            cart = CartItem.objects.get(product=single_product, cart__cart_id=_card_id(request), variant_key=None)
-        except CartItem.DoesNotExist:
-            cart = None
-        cart_exist = True if cart else False
-        context = {'single_product': single_product, 'cart_exist': cart_exist, '' if not data else 'variant': data,
-                   '' if not cart_exist else 'cart_item': cart}
+    try:
+        if request.user.is_authenticated:
+            cart_item = CartItem.objects.get(product=single_product, user=request.user)
+        else:
+            cart_item = CartItem.objects.get(product=single_product, cart__cart_id=_card_id(request))
+    except CartItem.DoesNotExist:
+        cart_item = None
+    cart_exist = True if cart_item else False
+    context = {'single_product': single_product, 'cart_exist': cart_exist, '' if not data else 'variant': data,
+               '' if not cart_exist else 'cart_item': cart_item}
 
     return render(request, 'store/product_detail.html', context)
 
-
 def add_card(request, product_id):
-    # if request.method == 'POST':
-    #     for item in request.POST:
-    #         key = item
-    #         value = request.POST[key]
-    #         print(value)
-    product = Product.objects.get(id=product_id)
-    try:
-        cart = Cart.objects.get(cart_id=_card_id(request))
-    except Cart.DoesNotExist:
-        cart = Cart.objects.create(cart_id=_card_id(request))
-        cart.save()
+    product = get_object_or_404(Product, id=product_id)
+    cart_id = _card_id(request)
 
-    try:
-        cart_item = CartItem.objects.get(cart=cart, product=product)
+    attribut_variation = [value for key, value in request.POST.items() if key != "csrfmiddlewaretoken"]
+    attribut_variation.sort()  # Ensure consistent order
+    variant_key = ",".join(attribut_variation)  # Create a unique key
+
+    cart_item_defaults = {'quantity': 1}
+    if attribut_variation:
+        cart_item_defaults['variant_key'] = variant_key
+
+    if request.user.is_authenticated:
+        cart_item, created = CartItem.objects.get_or_create(
+            product=product,
+            user=request.user,
+            defaults=cart_item_defaults,
+        )
+    else:
+        cart, created = Cart.objects.get_or_create(cart_id=cart_id)
+        cart_item, created = CartItem.objects.get_or_create(
+            product=product,
+            defaults=cart_item_defaults,
+            cart=cart,
+        )
+
+    if not created:
         cart_item.quantity += 1
-        cart_item.save()
-    except CartItem.DoesNotExist:
-        cart_item = CartItem.objects.create(cart=cart, product=product, quantity=1)
-        cart_item.save()
+        cart_item.save(update_fields=['quantity'])
+
+    if attribut_variation:
+        # Assuming variants_attribut is a ManyToManyField or similar
+        cart_item.variants_attribut.add(*attribut_variation)
 
     return redirect(product.get_url())
 
-
 def diminue_item(request, product_id):
-    product = Product.objects.get(id=product_id)
-    try:
-        cart = Cart.objects.get(cart_id=_card_id(request))
-        cart_item = CartItem.objects.get(cart=cart, product=product)
-        if cart_item.quantity == 0:
-            return redirect(product.get_url())
-        else:
-            cart_item.quantity -= 1
-            cart_item.save()
-            return redirect(product.get_url())
-    except:
+    product = get_object_or_404(Product, id=product_id)
+    if request.user.is_authenticated:
+        cart_item = get_object_or_404(CartItem, user=request.user, product=product)
+    else:
+        cart = _card_id(request)
+        cart_item = get_object_or_404(CartItem, cart__cart_id=cart, product=product)
+
+    if cart_item.quantity > 1:
+        cart_item.quantity -= 1
+        cart_item.save()
+        return redirect(product.get_url())
+    else:
+        cart_item.delete()
         return redirect(product.get_url())
 
-# def custom_404(request, exception):
-#     return render(request, 'error/404.html', status=404)

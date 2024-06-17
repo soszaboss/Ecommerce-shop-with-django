@@ -5,23 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5527b1e8-6710-4570-8b6f-8005f0ad5deb" name="Changes" comment="&quot;checkout fixed&quot;">
-      <change afterPath="$PROJECT_DIR$/order/forms.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order/migrations/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/js/public/app.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/js/server/server.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/cart/checkout.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/order/order_place.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/36ebebd2-e6c7-4581-850c-fddac2205e9b.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/36ebebd2-e6c7-4581-850c-fddac2205e9b.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/36ebebd2-e6c7-4581-850c-fddac2205e9b/storage_v2/_src_/database/ecommerce.QLYXWw/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/36ebebd2-e6c7-4581-850c-fddac2205e9b/storage_v2/_src_/database/ecommerce.QLYXWw/schema/public.abK9xQ.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EcommerceProject/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/EcommerceProject/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EcommerceProject/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/EcommerceProject/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EcommerceProject/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/EcommerceProject/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/carts/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/carts/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order/migrations/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/order/migrations/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/store/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/store/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/authentification/signin.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/authentification/signin.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/store/cart.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/cart/cart.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/store/checkout.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/cart/cart.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/cart/cart.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/order/order_place.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/order/order_place.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/store/product_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/store/product_detail.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,16 +73,16 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.pycharm.django.structure.promotion.once.per.project&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;20.12.0&quot;,
-    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;20.12.7&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;advanced-payment&quot;,
+    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;20.13.1&quot;,
+    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;20.13.0&quot;,
     &quot;last_opened_file_path&quot;: &quot;/home/soszaboss/Documents/projet/python/flask/EcommerceProject/templates/error&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
   &quot;keyToStringList&quot;: {
@@ -141,8 +136,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-1d06a55b98c1-91d5c284f522-JavaScript-PY-241.15989.155" />
-        <option value="bundled-python-sdk-babbdf50b680-7c6932dee5e4-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-241.15989.155" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-PY-241.17890.14" />
+        <option value="bundled-python-sdk-5b207ade9991-7e9c3bbb6e34-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-241.17890.14" />
       </set>
     </attachedChunks>
   </component>
@@ -187,6 +182,12 @@
       <workItem from="1716975052870" duration="3000" />
       <workItem from="1717013072887" duration="18000" />
       <workItem from="1717065070471" duration="5263000" />
+      <workItem from="1718360894842" duration="3910000" />
+      <workItem from="1718367314362" duration="8997000" />
+      <workItem from="1718440691275" duration="12997000" />
+      <workItem from="1718531713645" duration="5802000" />
+      <workItem from="1718626058853" duration="532000" />
+      <workItem from="1718630616437" duration="8395000" />
     </task>
     <task id="LOCAL-00001" summary="&quot;search bar fixed&quot;">
       <option name="closed" value="true" />

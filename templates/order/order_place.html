@@ -166,7 +166,7 @@ window.paypal
                 quantity: 5,
               },
                     ],
-            payload: {"intent": "CAPTURE", "purchase_units": [{"reference_id":"{{ order_number }}", "amount": {"currency_code": "USD", "value": "{{ total }}", }, }, ], }
+            payload: {"intent": "CAPTURE", "purchase_units": [{"reference_id":"{{ order_number }}", "amount": {"currency_code": "USD", "value": "{{ currency_converted }}", }, }, ] }
           }),
         });
         const orderData = await response.json();
@@ -195,6 +195,9 @@ window.paypal
             "Content-Type": "application/json",
             'X-CSRFToken': csrftoken,
           },
+        body: JSON.stringify({
+            total: {{ total }}
+        })
         });
 
         const orderData = await response.json();
